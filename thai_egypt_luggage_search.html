@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thai ↔ Egypt Luggage Search</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+  }
+  .container { max-width: 980px; margin: auto; padding: 24px 16px 50px; }
+  header {
+    background: linear-gradient(135deg,#173b70,#2878a8);
+    color: white; padding: 34px 20px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  h1 { margin: 0 0 8px; font-size: 30px; }
+  header p { margin: 0; opacity: .9; }
+  .search-box {
+    background: white; border-radius: 18px; padding: 20px;
+    box-shadow: 0 8px 30px rgba(20,40,80,.08);
+  }
+  .routes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .route {
+    border: 2px solid #e1e6ef; background: #fff; padding: 14px;
+    border-radius: 12px; cursor: pointer; font-size: 16px; font-weight: 700;
+  }
+  .route.active { border-color: #2878a8; background: #eef8fc; color: #17658e; }
+  .fields { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; }
+  label { font-size: 13px; font-weight: 700; color:#586174; display:block; margin-bottom:6px; }
+  input, select {
+    width:100%; padding:12px; border:1px solid #d8deea; border-radius:10px;
+    font-size:15px; background:white;
+  }
+  .actions { display:flex; gap:10px; margin-top:14px; }
+  button {
+    border:0; border-radius:10px; padding:12px 18px; cursor:pointer;
+    font-size:15px; font-weight:700;
+  }
+  .primary { background:#176b9a; color:white; flex:1; }
+  .secondary { background:#eef1f6; color:#38445a; }
+  .summary { margin:24px 0 12px; font-weight:800; }
+  .results { display:grid; gap:12px; }
+  .card {
+    background:white; border-radius:16px; padding:18px;
+    box-shadow:0 5px 18px rgba(20,40,80,.06);
+    border:1px solid #e9edf4;
+  }
+  .card-top { display:flex; justify-content:space-between; gap:12px; }
+  .badge { background:#eaf6ed; color:#23713c; padding:5px 9px; border-radius:999px; font-size:12px; font-weight:800; white-space:nowrap; }
+  .title { font-size:18px; font-weight:800; }
+  .meta { color:#657084; margin-top:7px; line-height:1.7; }
+  .price { font-size:18px; font-weight:800; margin-top:10px; }
+  .contact { margin-top:14px; width:100%; background:#172033; color:white; }
+  .empty { text-align:center; padding:35px 15px; color:#687286; background:white; border-radius:16px; }
+  .notice {
+    margin-top:20px; font-size:12px; line-height:1.6; color:#687286;
+    background:#fff8e8; border:1px solid #f1dfaa; padding:13px; border-radius:12px;
+  }
+  @media(max-width:700px){
+    .fields { grid-template-columns:1fr; }
+    .routes { grid-template-columns:1fr; }
+    h1 { font-size:25px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>✈️ Thai ↔ Egypt Luggage</h1>
+    <p>ค้นหาคนที่มีน้ำหนักกระเป๋าเหลือ ระหว่างไทยและอียิปต์</p>
+  </header>
+
+  <section class="search-box">
+    <label>เส้นทาง</label>
+    <div class="routes">
+      <button class="route active" data-route="TH-EG">🇹🇭 ไทย → 🇪🇬 อียิปต์</button>
+      <button class="route" data-route="EG-TH">🇪🇬 อียิปต์ → 🇹🇭 ไทย</button>
+    </div>
+
+    <div class="fields">
+      <div>
+        <label for="from">ออกจาก</label>
+        <select id="from"></select>
+      </div>
+      <div>
+        <label for="to">ไปยัง</label>
+        <select id="to"></select>
+      </div>
+      <div>
+        <label for="date">วันที่เดินทาง</label>
+        <input id="date" type="date">
+      </div>
+    </div>
+
+    <div class="fields" style="margin-top:12px">
+      <div>
+        <label for="kg">น้ำหนักที่ต้องการ (kg)</label>
+        <input id="kg" type="number" min="1" step="0.5" placeholder="เช่น 5">
+      </div>
+      <div>
+        <label for="sort">เรียงตาม</label>
+        <select id="sort">
+          <option value="date">วันที่ใกล้ที่สุด</option>
+          <option value="weight">น้ำหนักเหลือมากที่สุด</option>
+          <option value="price">ราคาต่ำสุด</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" onclick="searchListings()">🔍 ค้นหา</button>
+      <button class="secondary" onclick="resetSearch()">ล้าง</button>
+    </div>
+  </section>
+
+  <div class="summary" id="summary"></div>
+  <div class="results" id="results"></div>
+
+  <div class="notice">
+    ⚠️ ตัวอย่างนี้เป็นระบบค้นหาเบื้องต้นเท่านั้น ผู้ใช้ควรตรวจสอบสัมภาระ สิ่งของต้องห้าม
+    กฎของสายการบิน และกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง
+  </div>
+</div>
+
+<script>
+const listings = [
+  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-15", kg:15, price:350, currency:"THB", contact:"https://wa.me/201000000001"},
+  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-19", kg:20, price:320, currency:"THB", contact:"https://wa.me/201000000002"},
+  {route:"TH-EG", from:"Bangkok", to:"Alexandria", date:"2026-10-23", kg:10, price:400, currency:"THB", contact:"https://wa.me/201000000003"},
+  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-28", kg:8, price:300, currency:"THB", contact:"https://wa.me/201000000004"},
+  {route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-18", kg:15, price:250, currency:"EGP", contact:"https://wa.me/201000000005"},
+  {route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-22", kg:20, price:230, currency:"EGP", contact:"https://wa.me/201000000006"},
+  {route:"EG-TH", from:"Alexandria", to:"Bangkok", date:"2026-10-30", kg:12, price:270, currency:"EGP", contact:"https://wa.me/201000000007"}
+];
+
+let currentRoute = "TH-EG";
+
+const cities = {
+  "TH-EG": ["Bangkok","Chiang Mai","Cairo","Alexandria"],
+  "EG-TH": ["Cairo","Alexandria","Bangkok","Chiang Mai"]
+};
+
+function setupRoute(route) {
+  currentRoute = route;
+  document.querySelectorAll(".route").forEach(b => b.classList.toggle("active", b.dataset.route === route));
+  const [fromDefault,toDefault] = route === "TH-EG" ? ["Bangkok","Cairo"] : ["Cairo","Bangkok"];
+  const from = document.getElementById("from"), to = document.getElementById("to");
+  const opts = cities[route];
+  from.innerHTML = opts.slice(0,2).map(x => `<option>${x}</option>`).join("");
+  to.innerHTML = opts.slice(2).map(x => `<option>${x}</option>`).join("");
+  from.value = fromDefault; to.value = toDefault;
+  searchListings();
+}
+
+document.querySelectorAll(".route").forEach(b => b.addEventListener("click", () => setupRoute(b.dataset.route)));
+
+function formatDate(d) {
+  return new Date(d+"T00:00:00").toLocaleDateString("th-TH",{day:"numeric",month:"short",year:"numeric"});
+}
+
+function searchListings() {
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const date = document.getElementById("date").value;
+  const kg = parseFloat(document.getElementById("kg").value);
+  const sort = document.getElementById("sort").value;
+
+  let data = listings.filter(x => x.route === currentRoute && x.from === from && x.to === to);
+  if (date) data = data.filter(x => x.date >= date);
+  if (!Number.isNaN(kg)) data = data.filter(x => x.kg >= kg);
+
+  if (sort === "date") data.sort((a,b)=>a.date.localeCompare(b.date));
+  if (sort === "weight") data.sort((a,b)=>b.kg-a.kg);
+  if (sort === "price") data.sort((a,b)=>a.price-b.price);
+
+  document.getElementById("summary").textContent =
+    `พบ ${data.length} รายการ — ${from} → ${to}`;
+
+  const results = document.getElementById("results");
+  if (!data.length) {
+    results.innerHTML = `<div class="empty">ยังไม่พบรายการที่ตรงกับการค้นหา<br><br>ลองเปลี่ยนวันที่ เมือง หรือจำนวน kg</div>`;
+    return;
+  }
+
+  results.innerHTML = data.map(x => `
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="title">✈️ ${x.from} → ${x.to}</div>
+          <div class="meta">
+            📅 ${formatDate(x.date)}<br>
+            🧳 มีน้ำหนักเหลือ <strong>${x.kg} kg</strong>
+          </div>
+        </div>
+        <span class="badge">มีพื้นที่</span>
+      </div>
+      <div class="price">ประมาณ ${x.price.toLocaleString()} ${x.currency} / kg</div>
+      <button class="contact" onclick="window.open('${x.contact}','_blank')">ติดต่อผู้เดินทาง</button>
+    </article>
+  `).join("");
+}
+
+function resetSearch() {
+  document.getElementById("date").value = "";
+  document.getElementById("kg").value = "";
+  document.getElementById("sort").value = "date";
+  setupRoute(currentRoute);
+}
+
+setupRoute("TH-EG");
+</script>
+</body>
+</html>
