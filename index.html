@@ -74,7 +74,7 @@
 <div class="container">
   <header>
     <h1>✈️ Thai ↔ Egypt Luggage</h1>
-    <p>น้ำหนักกระเป๋าไทย-อียิปต์</p>
+    <p>ค้นหาน้ำหนักกระเป๋าไทย-อียิปต์</p>
   </header>
 
   <section class="search-box">
@@ -120,10 +120,15 @@
   <div class="summary" id="summary"></div>
   <div class="results" id="results"></div>
 
-  <div class="notice">
-    ⚠️ ตัวอย่างนี้เป็นระบบค้นหาเบื้องต้นเท่านั้น ผู้ใช้ควรตรวจสอบสัมภาระ สิ่งของต้องห้าม
-    กฎของสายการบิน และกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง
-  </div>
+    <div class="notice">
+      ⚠️ <b>ข้อควรระวัง</b><br>
+      • เว็บนี้เป็นเพียงที่รวบรวมข้อมูล ไม่ได้เป็นคู่สัญญา และไม่รับประกันผู้เดินทางหรือราคา<br>
+      • ตรวจสิ่งของทุกชิ้นด้วยตนเองก่อนฝาก ห้ามฝากของที่ไม่ทราบว่าคืออะไร ผู้เดินทางต้องรับผิดชอบตามกฎหมายที่สนามบิน<br>
+      • ตรวจกฎของสายการบินและกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง<br>
+      • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
+      📅 ข้อมูลอัปเดตล่าสุด: 8 ต.ค. 2026<br>
+      📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <b>ใส่อีเมลหรือเพจของคุณตรงนี้</b>
+    </div>
 </div>
 
 <script>
@@ -383,6 +388,9 @@ function getTodayStr(route) {
 }
 const DEV_MODE = new URLSearchParams(location.search).has("dev");
 
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
 function parseBagPrice(v) {
   if (typeof v === "number") return v;
   if (typeof v !== "string") return null;
@@ -439,7 +447,7 @@ if (date) data = data.filter(x => x.date.startsWith(date));
   <article class="card">
     <div class="card-top">
       <div>
-        <div class="title">👤 ${x.name}</div>
+        <div class="title" dir="auto">👤 ${esc(x.name)}</div>
         <div class="meta">
         ✈️ ${x.from} → ${x.to}<br>
         📅 ${formatDate(x.date)}
