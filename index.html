@@ -105,7 +105,8 @@
         <label for="sort">เรียงตาม</label>
         <select id="sort">
           <option value="date">วันที่ใกล้ที่สุด</option>
-          <option value="price">ราคาต่ำสุด</option>
+          <option value="priceKg">ราคาต่อกิโล (ต่ำสุด)</option>
+          <option value="priceBag">ราคาต่อใบ (ต่ำสุด)</option>
         </select>
       </div>
     </div>
@@ -127,69 +128,85 @@
 
 <script>
 const listings = [
-  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
+  
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Ainul Slw", kg:null, pricePerKg:280, pricePerBag:"6,xxx", currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100025159922991",
    contact:"https://m.me/100025159922991/"},
 
-  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-15",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-15",
    name:"Neeai Noor", kg:null, pricePerKg:null, pricePerBag:5600, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100035804531950",
    contact:"https://m.me/100035804531950/"},
 
-  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Farah Fawziyya", kg:null, pricePerKg:280, pricePerBag:"6,xxx", currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=61550577374142",
    contact:"https://m.me/61550577374142"},
 
-   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
    name:"Mus Assalihin", kg:null, pricePerKg:290, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100005474792142",
    contact:"https://m.me/100005474792142/"},
 
-   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Baik-jahat Hanya Dihati Mu", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100012827118970",
    contact:"https://m.me/100012827118970"},
 
-   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
    name:"Hasan DH", kg:null, pricePerKg:250, pricePerBag:"5,xxx", currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100023228181196",
    contact:"https://m.me/100023228181196"},
 
-  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
    name:"Tusu Tawa", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=61583030075967",
    contact:"https://m.me/61583030075967"},
 
-   {route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-29",
+{route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-29",
    name:"Tusu Tawa", kg:null, pricePerKg:120, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=61583030075967",
    contact:"https://m.me/61583030075967"},
-  
-   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-24",
+
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-24",
    name:"Ikan Kucing", kg:null, pricePerKg:250, pricePerBag:5300, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=61582140822295",
    contact:"https://m.me/61582140822295"},
 
-  {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
    name:"Masam Manis", kg:null, pricePerKg:250, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100065512518684",
    contact:"https://m.me/100065512518684"},
 
-   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-10",
+{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-10",
    name:"Wilyy Ys", kg:null, pricePerKg:250, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100003122065536",
    contact:"https://m.me/100003122065536"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-15",
    name:"Haris Phomee", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100051890870846",
    contact:"https://m.me/100051890870846"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Waeharon Waedeered", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100013934372162",
    contact:"https://m.me/100013934372162"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Roti Bagus ", kg:null, pricePerKg:280, pricePerBag:"6,xxx", currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100003242893043",
    contact:"https://m.me/100003242893043"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
    name:"Sahru Tohir", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100012228963994",
    contact:"https://m.me/100012228963994"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
    name:"عبدالحفيظ بن سليمان", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100004357278609",
    contact:"https://m.me/100004357278609"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-02",
@@ -197,111 +214,131 @@ const listings = [
    profile:"https://www.facebook.com/profile.php?id=100033043719050",
    contact:"https://m.me/100033043719050"},
 
-
 {route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-29",
    name:"Kacae Hija", kg:null, pricePerKg:120, pricePerBag:null, currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=61588515683088",
    contact:"https://m.me/61588515683088"},
 
-
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"นูรีซัน หัดขะเร็ม ", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"100028111323343/?__cft__[0]=AZjvKVtmK3Zhho1qG-NebWpGviPU_8AW6yjsZigGfT92EtN52S5fkqCEwifo4YcEfdbDDf8kvLDv4SiaOWSm5LpRsjOuesA1itl7O5xAUL_pI474HlT0TrMWEnxHnhbNAI8GWUDGLudQIg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100028111323343",
+   contact:"https://m.me/100028111323343"},
 
-{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
-   name:"Sahru Tohir ", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100012228963994/?__cft__[0]=AZjqJjwTmfdil67VG0Q9kDLG2Aac86nuoLNxPUHxFVlDOLRasQp13YpgE8KiswQYrenKGtLyXSUc22A-68qRY8t-K6_-1pX7WW4JGNanyOZke48e6sriwraDtDbqBl_DQozAKJXqIdaPh6I98oHCJsQrVnmTBUzZfpfCC-tiwhkF5Yu9HRSgFGOln11CoibBStMr6Q&__tn__=-UC%2CP-R"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Samsudin Uma", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/61557347333391/?__cft__[0]=AZij5JZLkQvB8LhGFuqQVWk5_XAQmsvJrI1yhyFqEFxr6-Rr4Pl6qqJfWD5AImutdrObjaWO_6-VltYlcxTlHiBFWhnGAbOdJ_ncMl9S6QbZmyE_Qy4IqU8dU1qpWjnPV8b2Gp8NsMBvzA&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=61557347333391",
+   contact:"https://m.me/61557347333391"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-19",
    name:"اَنَا أَزْهَرِيٌ ", kg:null, pricePerKg:250, pricePerBag:"4,000", currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100003112501265/?__cft__[0]=AZhAcEHhCLgyd769luhG2idl2bXin5R1sf_th98qGb9_2Hj-xuDxEQoj9Bfm84Nv66p5FbbzrF2kKkcI-8dm2KqrwRYZakiMHp8hwSKTXw4gBfGNROlG3m8i_hcKz-4WjOZJCBhhSZEwvQ&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100003112501265",
+   contact:"https://m.me/100003112501265"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
    name:"حياةالعلم بالمذاكرة", kg:null, pricePerKg:270, pricePerBag:"6,000", currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100086093874830/?__cft__[0]=AZgB_MGK2DH3rHIQy4shRqrH7hk7HeqU3FSzbaGQQj-Op14kN36byMfBapYYjQGBc6rO8fgy_QYDxlhZnNm8keCiXF5KmEQXazO-Qo-A77KtIInKKZto_gmsPANBvby_CX0xn7ZXHhXXeg4teJ68WQhYF3hZv-ZHOMrDla3HfZpFbWhdTx-17xFj2gBGn58VrQ&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100086093874830",
+   contact:"https://m.me/100086093874830"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
    name:"Nisfu Kechi", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100024143617051/?__cft__[0]=AZh5JgXIiwQf0veLK9IJtqY0rYnPYqL5DuaN11bHS71nd_4AbneWm4IOfL8KJVw67AoTaWE-oxIc-5fLHBZunpKvvpHt8hLg-P9SAkG1nJ_7-DOK0lbDWJnEuqoaYabjoR-hkHIr0g52Kh26vCNwhuap8pbaFVaXwIZxhg6_iPaU5zJCcEGHerYKvJjUw6AdwA&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100024143617051",
+   contact:"https://m.me/100024143617051"},
 
 {route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-10-11",
    name:"Tusu Tawa", kg:null, pricePerKg:110, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/61583030075967/?__cft__[0]=AZjENezrNoj_P91FIhvpK00LuWB5GGl67bMfXFX4-t00DSprhLr2NKz-J1vWao52xpus7qYzh7hgs8yYdjJzp53mg1aDfD7hJFAEac7650ZDQI3eVIWkQSoplMDkLg_fPrP5seVq-Q&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=61583030075967",
+   contact:"https://m.me/61583030075967"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-20",
    name:"Napaspong Maliwan", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100006041587398/?__cft__[0]=AZg_vJv9euYWE1YoQQ_3lvX8_IfCP_1nER7N5NbxKez36W7vJRALhfL2-hf7MxfGq5akYy4e5bP2gGYXvpi-Y-U_ymFx3ktg6AP-enqRv0H1VV99JsofVnFq1i4WiwGD9xs86I2ikPpEtuCKGPbXNG2b1XSg0acQMn_FK-LL0sKqN-B7zGq1DWzgRvr0xxZcFDxNXg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100006041587398",
+   contact:"https://m.me/100006041587398"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-11",
    name:"Arwa Aslamiah", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100085167487203/?__cft__[0]=AZh99itm_azzWcILpJyE2kiGuKoS2qDJVzJ0uYDeVhqbJ1cMVZVEgB3Mr_U6aVCx5hM7-xJ_9pCKTIBPNWq30lls3GF56WxO-Ji-IxXR1Uz_mU1mPWKp4KAzGb1GR5TrcQHXmCxY6x2CzS144HuvxRSBkvRznjpZOsgEck4tK1MEE3TdS9th8p-lpCg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100085167487203",
+   contact:"https://m.me/100085167487203"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Husneeda Si'kalee", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100051454335114/?__cft__[0]=AZiQh_KZ3WMU1aRvsYfxWDzRMau1NOYo-aK6een-93GfOWoiTa_w9vq4c5-x-8EV-fdaHcVMGCYJUlDcWQCHED7btnsMNcxqWBMHqgHd-rpMSA3HrHhsgcgUgIKuiTDvFf2opzPnj1iJMCSaC8e5pWoJpS-sW4NxNX-gBqJ6EhdMCQ7eAfh2BTFQiPw&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100051454335114",
+   contact:"https://m.me/100051454335114"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
    name:"Muhammad Alee Mudor", kg:null, pricePerKg:250, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100004796077815/?__cft__[0]=AZgfuPC1Vh0zAaCA80gjf16gvP917sZiik1uabni6hT-J1qrgOfDqJ_-cuCKZXOTosKMzO_5iEImmzDSZAZ3FPj0a3Xbt2g7IRiPLGzt4Y_MZs6g7tevyzP2gqcRsXQWm7d3S3Y7kgoMhg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100004796077815",
+   contact:"https://m.me/100004796077815"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
    name:"Bilgees Yutika", kg:null, pricePerKg:290, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100022657813585/?__cft__[0]=AZi2rWfwgXgXNJa2RDtEqbAZkfgpE2889NzzMhqGLc_K2JWRhPFA-ifmb_oDxqpaVlTaeliE46wKRjA9-NCFaVPcUWqNyBE7tPe4pmQYKIs0KWNmbQNRUCaxS3-I-yTcJ4Hnko9HX6_9r3vIomDBSZOkDe1Dz48YYmuIy-JV9yPox7mPZHo_JpShJ8fnhfg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100022657813585",
+   contact:"https://m.me/100022657813585"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-05",
    name:"Amran Tiyoh", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100023752751782/?__cft__[0]=AZg6eZKwP102tYWSMP94iFsSuftIjlTY2QEmvTPMgCHKDtsmHee4lQeOEanFPR-jxBdUPYKtf66keVFyxDzl8FrvrxhdiYYGpIawVx0191UbO5UOlcSt0jJxHlzlA8pCgPDbIj6u4j1-njkhvM0a-ZgFXcrZuHR8ketYHglfoj_XIaSPB0sn-AXWdcAy_61EAg&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100023752751782",
+   contact:"https://m.me/100023752751782"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-27",
    name:"Muhammad Iman Arwae", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/61594057600726/?__cft__[0]=AZhetcAN7Ar5T8M4jbu_6Rqsz2RcnAEkD1JYcow88cOgQt1hd0izSHppjnY1V0u2hQNStAhKIM8CNGJgoK7Y53eKmt0fNyaPWUXALj7G1oswxE3W2LelBPkqWOfB8OHt1f0y3ZddnA&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=61594057600726",
+   contact:"https://m.me/61594057600726"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-15",
    name:"Anas Reeyasan", kg:null, pricePerKg:null, pricePerBag:"5,600", currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100045611379761/?__cft__[0]=AZj2r8HNwH4wRkjHNb8QQORwU0FFiJaMAbp02TboyM5dHR1RJzokwN_hzwxRZtykQKHcq3C9a5oa_6IqgIjie93WVh2xzCFDTb-DNKInHvUQvRbVl5v9er4AdKdS2ZGDm5OWyDz0XTFvLJAiMZQfS4Ndn0PhRDBD5PMrGpA-szUR7tlhREnntuJf-OY&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100045611379761",
+   contact:"https://m.me/100045611379761"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
    name:"Irfan Benae", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100015695551346/?__cft__[0]=AZi9mzFova5zmFsJtWfUyvvkzkCbR9VZ_VkczzsiSepmHG7--juPwWC4JjktFZb2352SdQQqNG1LC8PHe8ZjIaxI8rwqze5tJBjs6iAAuu_bt00A60tgF5wB4H5SPkZWPiORcfREkCkuPBdmuJm2lETksu3DKHw7Jnk-gG5DFlB9_2pwBDJl3Ewo39xDEt8&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100015695551346",
+   contact:"https://m.me/100015695551346"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
    name:"Muzammil Waema", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100070821392994/?__cft__[0]=AZghl2DvtyNAckq24IGhOdFyqO0q7tMvTnTjs-iVezM8SiMu94rl_Yq6rg-MWrtcRhSjZnHbPCSNTns9C3YQm0_YZjaggQhrfOIPtAjlbgp4Uz2XIiwlo_uM3S6NfOndem05ECiGgT55LLZcknRB4A7QwqzV_pHSAjMih7z8oi6llG-MifhUEgms4E4&__tn__=-UC%2CP-R"},
-
+   profile:"https://www.facebook.com/profile.php?id=100070821392994",
+   contact:"https://m.me/100070821392994"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
    name:"Affan Awae", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100078852008773/?__cft__[0]=AZjRqRMWFCVmlUgaiLMdVYxwjPd8Z7DK_XnfW_5bTcmNhcO0WdZp4WG9aLhnuW0U6tzPW3_jMkfxLx0ru0DmcPSajvef5Z_8jqJkdeni05n7U1aCvB8HWv75yXJNMxTJBmUmh84LJZ-35u4spvbRuFUdgVPz9Hht_a6eDq9cOkzGwv4awIK9CbFbE6s&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100078852008773",
+   contact:"https://m.me/100078852008773"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-27",
    name:"Ibnu Ismail ", kg:null, pricePerKg:290, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100010251493304/?__cft__[0]=AZieAmuQYOxrHh1mx5MnMc3Rr3EjFt7MRAz29bsAt-bc94BP864_w7ZbyjCL2Tf3mDH241GsXWEjOscUiIWhvwbM3xTQNIrqAb78saMio_ykZe-bBqfy-A-KgBE0jhW319pCO37Qia3Gxw&__tn__=-UC%2CP-R"},
-
+   profile:"https://www.facebook.com/profile.php?id=100010251493304",
+   contact:"https://m.me/100010251493304"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-27",
    name:"Adha Wateh", kg:null, pricePerKg:290, pricePerBag:"5,xxx", currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100053411100943/?__cft__[0]=AZgLSCpWUAP4jZQc4wxiFFL0zTxg-oGIuvvMoIXtKTjYh6B2_5VmSb4AU6_1boW-4o9_ECOnCMmN0wlmNy5AvubZiCvIh1hyBGSfV3OBSoLEs9V1LtWnMfUxV-A8bXdiv2DwsLIzJjwdk_sbip-BZf__9orf-3Ee1wBz_M-7vzSu9VT-hNc1Hd-Swaom_Ug&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100053411100943",
+   contact:"https://m.me/100053411100943"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-16",
    name:"Haranee Muhamad", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100022067377939/?__cft__[0]=AZjV7MXcyWJQCzbJ9QgkeHDaYKFXNCeh3Jzmb_ZUuGzP4EnIOHpvaAo8RLvmTHExxASBxv_U6KWxoE7M60sjZ8u6GAIUSKlKo8Cbf27n2k_Tk1kidVGJdGFBVGtpJvxAkHNL1fc58MQNPw&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100022067377939",
+   contact:"https://m.me/100022067377939"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
    name:"Hakim Satoh", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100027247894029/?__cft__[0]=AZgeMm5tSk4dvft6sPuBKszhGadSz4x3w4zVofpw-_pTH_lGZwVNZJjkNU_nvYQIDVrJ5LrWQJyT1q0DzKK4oQIEGnSzV9yOF5fKlq-Z754rbURqtlhkkodv2vj47FTD8YoaoA6oqT_KvdCaHL1bdvFAdhO7kPaYQB2DBKJb716HOHYRNYgomzCR9aw&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100027247894029",
+   contact:"https://m.me/100027247894029"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
    name:"Muhammad Nasree Longsaleah", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100008294258976/?__cft__[0]=AZj9fvqITJFbU22D0MSWR7EcuglNoQ0xi0Vce75hF3pp2YpXASMNcz0CTYeY3oc_f95jyYn-r9ZVN4mnoHRxcnyIesJhSZXix5TQf5v2gY4qJVYvPoC8pVSKHybu2M1-4omlUVwfGfIarinugl__RJI1P6ddjEh8odiwzfkMKuvpW05dYzA21GK-_uuKaqvauPVdYA&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100008294258976",
+   contact:"https://m.me/100008294258976"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-20",
    name:"Beel Phutares Ketmunee", kg:null, pricePerKg:260, pricePerBag:null, currency:"THB",
-   contact:"https://www.facebook.com/groups/1327502453935665/user/100007725042581/?__cft__[0]=AZii8mZ4BC1EBx0XA9BkD9UckTGu-tJ1UbW_-EOfvR2KHgU-szlcBTXVUwrsQef8gAFpiJ5vnBICmjO7nBdLZYwTKFfZnmTG-stU0x3RDJDPuHGwAjDYGD5AcAVt5tjAeQaAAQyvXE3akQ&__tn__=-UC%2CP-R"},
+   profile:"https://www.facebook.com/profile.php?id=100007725042581",
+   contact:"https://m.me/100007725042581"},
 
+   {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
+   name:"Maswae Khongsant", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   profile:"https://www.facebook.com/profile.php?id=100066290180622",
+   contact:"https://m.me/100066290180622"},
 
 
 ];
@@ -346,6 +383,14 @@ function getTodayStr(route) {
 }
 const DEV_MODE = new URLSearchParams(location.search).has("dev");
 
+function parseBagPrice(v) {
+  if (typeof v === "number") return v;
+  if (typeof v !== "string") return null;
+  // "6,xxx" -> 6000 (ประมาณการต่ำสุด), "5,600" -> 5600
+  const n = parseInt(v.replace(/,/g, "").replace(/x/gi, "0"), 10);
+  return Number.isNaN(n) ? null : n;
+}
+
 function searchListings() {
   const from = document.getElementById("from").value;
   const to = document.getElementById("to").value;
@@ -362,11 +407,24 @@ const today = getTodayStr(currentRoute);
 );
 if (date) data = data.filter(x => x.date.startsWith(date));  
 
-  if (sort === "date") data.sort((a,b)=>a.date.localeCompare(b.date));
-  if (sort === "price") data.sort((a,b) => {
-  const pa = a.pricePerKg ?? Infinity, pb = b.pricePerKg ?? Infinity;
-  return pa === pb ? 0 : pa - pb;
-});
+    const byDate = (a, b) => a.date.localeCompare(b.date) || a.name.localeCompare(b.name);
+
+  // เทียบตัวเลข โดยรายการที่ไม่มีราคาไปอยู่ท้าย
+  const cmpNum = (x, y) => {
+    if (x == null && y == null) return 0;
+    if (x == null) return 1;
+    if (y == null) return -1;
+    return x - y;
+  };
+
+  if (sort === "date") {
+    data.sort(byDate);
+  } else if (sort === "priceKg") {
+    data.sort((a, b) => cmpNum(a.pricePerKg, b.pricePerKg) || byDate(a, b));
+  } else if (sort === "priceBag") {
+    data.sort((a, b) =>
+      cmpNum(parseBagPrice(a.pricePerBag), parseBagPrice(b.pricePerBag)) || byDate(a, b));
+  }
 
   document.getElementById("summary").textContent =
     `พบ ${data.length} รายการ — ${from} → ${to}`;
