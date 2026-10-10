@@ -95,7 +95,12 @@
       </div>
       <div>
         <label for="date">เดือนที่เดินทาง</label>
-        <input id="date" type="month">
+        <select id="date">
+          <option value="">ทุกเดือน</option>
+          <option value="2026-10">ตุลาคม 2569</option>
+          <option value="2026-11">พฤศจิกายน 2569</option>
+          <option value="2026-12">ธันวาคม 2569</option>
+        </select>
       </div>
     </div>
 
@@ -488,14 +493,16 @@ const cities = {
   "EG-TH": ["Cairo", "Bangkok"]
 };
 
+const cityTH = { Bangkok: "กรุงเทพฯ", Cairo: "ไคโร" };
+
 function setupRoute(route) {
   currentRoute = route;
   document.querySelectorAll(".route").forEach(b => b.classList.toggle("active", b.dataset.route === route));
   const [fromDefault,toDefault] = route === "TH-EG" ? ["Bangkok","Cairo"] : ["Cairo","Bangkok"];
   const from = document.getElementById("from"), to = document.getElementById("to");
   const opts = cities[route];
-  from.innerHTML = `<option>${opts[0]}</option>`;
-  to.innerHTML = `<option>${opts[1]}</option>`;
+  from.innerHTML = `<option value="${opts[0]}">${cityTH[opts[0]]}</option>`;
+  to.innerHTML = `<option value="${opts[1]}">${cityTH[opts[1]]}</option>`;
   from.value = fromDefault; to.value = toDefault;
   searchListings();
 }
@@ -568,8 +575,7 @@ if (date) data = data.filter(x => x.date.startsWith(date));
   }
 
   document.getElementById("summary").textContent =
-    `พบ ${data.length} รายการ — ${from} → ${to}`;
-
+`พบ ${data.length} รายการ — ${cityTH[from]} → ${cityTH[to]}`;
   const results = document.getElementById("results");
   if (!data.length) {
     results.innerHTML = `<div class="empty">ยังไม่พบรายการที่ตรงกับการค้นหา<br><br>ลองเปลี่ยนวันที่ หรือเมือง</div>`;
@@ -582,7 +588,7 @@ if (date) data = data.filter(x => x.date.startsWith(date));
       <div>
         <div class="title" dir="auto">👤 ${esc(x.name)}</div>
         <div class="meta">
-        ✈️ ${x.from} → ${x.to}<br>
+        ✈️ ${cityTH[x.from]} → ${cityTH[x.to]}<br>
         📅 ${formatDate(x.date)}
       </div>
       </div>
