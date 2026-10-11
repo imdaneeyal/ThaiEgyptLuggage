@@ -55,6 +55,7 @@
   .title { font-size:18px; font-weight:800; }
   .meta { color:#657084; margin-top:7px; line-height:1.7; }
   .price { font-size:18px; font-weight:800; margin-top:10px; }
+  .stock { font-weight:400; color:#657084; }
   .contact { margin-top:14px; width:100%; background:#172033; color:white; }
   a.contact { display:block; text-align:center; text-decoration:none;
   padding:12px 18px; border-radius:10px; font-weight:700; }
@@ -132,7 +133,7 @@
       • ตรวจกฎของสายการบินและกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง<br>
       • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
       📊 เว็บนี้เก็บสถิติการเข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br>
-      📅 ข้อมูลอัปเดตล่าสุด: 10 ต.ค. 2026<br>
+      📅 ข้อมูลอัปเดตล่าสุด: 11 ต.ค. 2026<br>
       📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <a href="mailto:imdaneeyal@gmail.com"><b>imdaneeyal@gmail.com</b></a>
     </div>
 </div>
@@ -170,11 +171,6 @@ const listings = [
    profile:"https://www.facebook.com/profile.php?id=100023228181196",
    contact:"https://m.me/100023228181196"},
 
-{route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
-   name:"Tusu Tawa", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-   profile:"https://www.facebook.com/profile.php?id=61583030075967",
-   contact:"https://m.me/61583030075967"},
-
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-24",
    name:"Ikan Kucing", kg:null, pricePerKg:250, pricePerBag:5300, currency:"THB",
@@ -197,7 +193,7 @@ const listings = [
    contact:"https://m.me/100051890870846"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25",
-   name:"Waeharon Waedeered", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   name:"Waeharon Waedeered", kg:null, pricePerKg:260, pricePerBag:null, currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100013934372162",
    contact:"https://m.me/100013934372162"},
 
@@ -217,7 +213,7 @@ const listings = [
    contact:"https://m.me/100004357278609"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-02",
-   name:"Anas Hajilaeh", kg:null, pricePerKg:270, pricePerBag:null, currency:"THB",
+   name:"Anas Hajilaeh", kg:null, pricePerKg:270, pricePerBag:"5,550", currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100033043719050",
    contact:"https://m.me/100033043719050"},
 
@@ -243,7 +239,7 @@ const listings = [
    contact:"https://m.me/100003112501265"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-10",
-   name:"حياةالعلم بالمذاكرة", kg:null, pricePerKg:250, pricePerBag:"5,500", currency:"THB",
+   name:"حياةالعلم بالمذاكرة", kg:null,bags:2, pricePerKg:250, pricePerBag:"5,500", currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100086093874830",
    contact:"https://m.me/100086093874830"},
 
@@ -288,7 +284,7 @@ const listings = [
    contact:"https://m.me/100023752751782"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-27",
-   name:"Muhammad Iman Arwae", kg:null, pricePerKg:270, pricePerBag:"5,1xx", currency:"THB",
+   name:"Muhammad Iman Arwae", kg:15, pricePerKg:260, pricePerBag:null, currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=61594057600726",
    contact:"https://m.me/61594057600726"},
 
@@ -328,7 +324,7 @@ const listings = [
    contact:"https://m.me/100022067377939"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-26",
-   name:"Hakim Satoh", kg:null, pricePerKg:270, pricePerBag:"5,4xx", currency:"THB",
+   name:"Hakim Satoh", kg:null, pricePerKg:260, pricePerBag:"5,3xx", currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100027247894029",
    contact:"https://m.me/100027247894029"},
 
@@ -349,7 +345,7 @@ const listings = [
     contact:"https://m.me/100036610881922" },
 
     {   route:"TH-EG",   from:"Bangkok",   to:"Cairo",   date:"2026-10-25",   
-    name:"Nurul Huda Ishak",   kg:null,   pricePerKg:280,   pricePerBag:null,   currency:"THB",   
+    name:"Nurul Huda Ishak",   kg:null,   pricePerKg:260,   pricePerBag:null,   currency:"THB",   
     profile:"https://www.facebook.com/profile.php?id=100093000048321",   
     contact:"https://m.me/100093000048321" },
 
@@ -389,7 +385,7 @@ const listings = [
   contact:"https://m.me/100006586906860" },
 
   { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-15", 
-  name:"Amru Chengoh", kg:null, pricePerKg:270, pricePerBag:"5,xxx", currency:"THB", 
+  name:"Amru Chengoh", kg:null, pricePerKg:250, pricePerBag:null, currency:"THB", 
   profile:"https://www.facebook.com/profile.php?id=100025623845699", 
   contact:"https://m.me/100025623845699" },
 
@@ -465,7 +461,7 @@ name:"Almas Tolama",  kg:null,  pricePerKg:280,  pricePerBag:"6,200",  currency:
   contact:"https://m.me/100042508921420"},
 
   {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-05",
-  name:"Cinta Abadi",  kg:null,  pricePerKg:290,  pricePerBag:null,  currency:"THB",
+  name:"Cinta Abadi",  kg:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
   profile:"https://www.facebook.com/profile.php?id=100003747519837",
   contact:"https://m.me/100003747519837"},
 
@@ -483,6 +479,44 @@ name:"Almas Tolama",  kg:null,  pricePerKg:280,  pricePerBag:"6,200",  currency:
   name:"Pulau Impian",  kg:null,  pricePerKg:260,  pricePerBag:null,  currency:"THB",
   profile:"https://www.facebook.com/profile.php?id=100013353525468",
   contact:"https://m.me/100013353525468"},
+
+
+{  route: "TH-EG",  from: "Bangkok",  to: "Cairo",  date: "2026-10-20",
+  name: "Khadijah Matno",  kg: null,  pricePerKg: 280,  pricePerBag: null,  currency: "THB",
+  profile: "https://www.facebook.com/profile.php?id=100033981315605",
+  contact: "https://m.me/100033981315605"},
+
+
+{  route: "TH-EG",  from: "Bangkok",  to: "Cairo",  date: "2026-10-20",
+  name: "Nurma Pula",  kg: null,  pricePerKg: 270,  pricePerBag: null,  currency: "THB",
+  profile: "https://www.facebook.com/profile.php?id=100032785923446",
+  contact: "https://m.me/100032785923446"},
+
+  
+{  route: "TH-EG",  from: "Bangkok",  to: "Cairo",  date: "2026-11-10",
+  name: "Mahdee Sribampen",  kg: null,  pricePerKg: 250,  pricePerBag: null,  currency: "THB",
+  profile: "https://www.facebook.com/profile.php?id=100093377140245",
+  contact: "https://m.me/100093377140245"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-01",
+  name:"Abdulcobir Ku-ae",  kg:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  profile:"https://www.facebook.com/profile.php?id=100020310304880",
+  contact:"https://m.me/100020310304880"},
+
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-18",
+  name:"Torhed Saharat",  kg:null,  bags:1,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  profile:"https://www.facebook.com/profile.php?id=100012137528032",
+  contact:"https://m.me/100012137528032"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-11",
+  name:"Munsid MT",  kg:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  profile:"https://www.facebook.com/profile.php?id=100005207264199",
+  contact:"https://m.me/100005207264199"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-15",
+  name:"Adwar Jaitrong",  kg:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  profile:"https://www.facebook.com/profile.php?id=100013946880354",
+  contact:"https://m.me/100013946880354"},
 
 ];
 
@@ -594,8 +628,10 @@ if (date) data = data.filter(x => x.date.startsWith(date));
       </div>
     </div>
     <div class="price">
+      ${x.kg != null ? `<span class="stock">📦 เหลือ ${x.kg} kg</span><br>` : ""}
+      ${x.bags != null ? `<span class="stock">🧳 เหลือ ${x.bags} ใบ</span><br>` : ""}
       ${x.pricePerKg != null ? `⚖️ ${x.pricePerKg.toLocaleString()} ${x.currency} / kg<br>` : ""}
-      ${x.pricePerBag != null ? `🧳 ${typeof x.pricePerBag === "number" ? x.pricePerBag.toLocaleString() : x.pricePerBag} ${x.currency} / ใบ` : ""}    </div>
+      ${x.pricePerBag != null ? `💰 ${typeof x.pricePerBag === "number" ? x.pricePerBag.toLocaleString() : x.pricePerBag} ${x.currency} / ใบ` : ""}    </div>
     <a class="contact" href="${x.contact}" target="_blank" rel="noopener noreferrer">ติดต่อผู้เดินทาง</a>
   </article>
 `).join("");
