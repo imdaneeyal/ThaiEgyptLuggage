@@ -55,7 +55,6 @@
   .badge.traveler { background:#eaf6ed; color:#23713c; }
   .badge.agent { background:#fff3e0; color:#a35a00; }
   .badge { display:inline-block; margin-top:6px; }
-  .title { font-size:18px; font-weight:800; }
   .title { font-size:18px; font-weight:800; text-align:left; }
   .title .name { unicode-bidi: isolate; }
   .meta { color:#657084; margin-top:7px; line-height:1.7; }
@@ -100,12 +99,30 @@
         <select id="to"></select>
       </div>
       <div>
-        <label for="date">เดือนที่เดินทาง</label>
+        <label for="date">ช่วงเวลาเดินทาง</label>
         <select id="date">
-          <option value="">ทุกเดือน</option>
-          <option value="2026-10">ตุลาคม 2569</option>
-          <option value="2026-11">พฤศจิกายน 2569</option>
-          <option value="2026-12">ธันวาคม 2569</option>
+          <option value="">ทุกช่วงเวลา</option>
+          <optgroup label="ตุลาคม 2569">
+            <option value="2026-10-01..2026-10-31">ทั้งเดือน</option>
+            <option value="2026-10-01..2026-10-07">สัปดาห์ที่ 1 (1-7)</option>
+            <option value="2026-10-08..2026-10-14">สัปดาห์ที่ 2 (8-14)</option>
+            <option value="2026-10-15..2026-10-21">สัปดาห์ที่ 3 (15-21)</option>
+            <option value="2026-10-22..2026-10-31">สัปดาห์ที่ 4 (22-31)</option>
+          </optgroup>
+          <optgroup label="พฤศจิกายน 2569">
+            <option value="2026-11-01..2026-11-30">ทั้งเดือน</option>
+            <option value="2026-11-01..2026-11-07">สัปดาห์ที่ 1 (1-7)</option>
+            <option value="2026-11-08..2026-11-14">สัปดาห์ที่ 2 (8-14)</option>
+            <option value="2026-11-15..2026-11-21">สัปดาห์ที่ 3 (15-21)</option>
+            <option value="2026-11-22..2026-11-30">สัปดาห์ที่ 4 (22-30)</option>
+          </optgroup>
+          <optgroup label="ธันวาคม 2569">
+            <option value="2026-12-01..2026-12-31">ทั้งเดือน</option>
+            <option value="2026-12-01..2026-12-07">สัปดาห์ที่ 1 (1-7)</option>
+            <option value="2026-12-08..2026-12-14">สัปดาห์ที่ 2 (8-14)</option>
+            <option value="2026-12-15..2026-12-21">สัปดาห์ที่ 3 (15-21)</option>
+            <option value="2026-12-22..2026-12-31">สัปดาห์ที่ 4 (22-31)</option>
+          </optgroup>
         </select>
       </div>
     </div>
@@ -854,6 +871,19 @@ function getTodayStr(route) {
     day: "2-digit"
   }).format(new Date());
 }
+
+function disablePastRanges() {
+  const today = getTodayStr("TH-EG");
+  const sel = document.getElementById("date");
+  Array.from(sel.options).forEach(opt => {
+    if (!opt.value) return;                 // "ทุกช่วงเวลา" ไม่ต้องปิด
+    const end = opt.value.split("..")[1];
+    opt.disabled = end <= today;   // ช่วงที่จบวันนี้หรือก่อนหน้า = เลือกไม่ได้
+  });
+  // ถ้าตัวเลือกที่เลือกอยู่กลายเป็น disabled ให้กลับเป็นทุกช่วงเวลา
+  if (sel.selectedOptions[0]?.disabled) sel.value = "";
+}
+
 const DEV_MODE = new URLSearchParams(location.search).has("dev");
 
 const POSTER_LABEL = {
@@ -888,7 +918,10 @@ const today = getTodayStr(currentRoute);
   x.date > today &&
   (x.deadline == null || x.deadline >= today)
 );
-if (date) data = data.filter(x => x.date.startsWith(date));
+if (date) {
+  const [start, end] = date.split("..");
+  data = data.filter(x => x.date >= start && x.date <= end);
+}
 if (poster !== "all") data = data.filter(x => x.poster === poster);
 
     const byDate = (a, b) => a.date.localeCompare(b.date) || a.name.localeCompare(b.name);
@@ -950,6 +983,7 @@ function resetSearch() {
   setupRoute(currentRoute);
 }
 
+disablePastRanges();
 setupRoute("TH-EG");
 </script>
 
