@@ -56,6 +56,8 @@
   .badge.agent { background:#fff3e0; color:#a35a00; }
   .badge { display:inline-block; margin-top:6px; }
   .title { font-size:18px; font-weight:800; }
+  .title { font-size:18px; font-weight:800; text-align:left; }
+  .title .name { unicode-bidi: isolate; }
   .meta { color:#657084; margin-top:7px; line-height:1.7; }
   .price { font-size:18px; font-weight:800; margin-top:10px; }
   .stock { font-weight:400; color:#657084; }
@@ -920,7 +922,7 @@ if (poster !== "all") data = data.filter(x => x.poster === poster);
   <article class="card">
     <div class="card-top">
       <div>
-        <div class="title" dir="auto">👤 ${esc(x.name)}</div>
+        <div class="title" dir="ltr">👤 <span class="name" dir="auto">${esc(x.name)}</span></div>
         ${x.poster && POSTER_LABEL[x.poster] ? `<span class="badge ${esc(x.poster)}">${POSTER_LABEL[x.poster]}</span>` : ""}
         <div class="meta">
         ✈️ ${cityTH[x.from]} → ${cityTH[x.to]}<br>
