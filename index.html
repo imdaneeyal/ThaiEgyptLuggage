@@ -59,6 +59,9 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
   .badge { background:#eaf6ed; color:#23713c; padding:5px 9px; border-radius:999px; font-size:12px; font-weight:800; white-space:nowrap; }
   .badge.traveler { background:#eaf6ed; color:#23713c; }
   .badge.agent { background:#fff3e0; color:#a35a00; }
+  .badge.traveler { background:#eaf6ed; color:#23713c; }
+  .badge.agent { background:#fff3e0; color:#a35a00; }
+  .badge.unknown { background:#eef1f6; color:#657084; }
   .badge { display:inline-block; margin-top:6px; }
   .title { font-size:18px; font-weight:600; text-align:left; }  
   .title .name { unicode-bidi: isolate; }
@@ -145,6 +148,7 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
           <option value="all">ทั้งหมด</option>
           <option value="traveler">ผู้เดินทางเอง</option>
           <option value="agent">ผ่านตัวแทน</option>
+          <option value="unknown">ไม่ระบุ</option>
         </select>
       </div>
 
@@ -1021,6 +1025,7 @@ const DEV_MODE = new URLSearchParams(location.search).has("dev");
 const POSTER_LABEL = {
   traveler: "✈️ ผู้เดินทางเอง",
   agent: "🔁 ผ่านตัวแทน",
+  unknown: "❔ ไม่ระบุ",
 };
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
@@ -1054,8 +1059,11 @@ if (date) {
   const [start, end] = date.split("..");
   data = data.filter(x => x.date >= start && x.date <= end);
 }
-if (poster !== "all") data = data.filter(x => x.poster === poster);
-
+if (poster === "unknown") {
+  data = data.filter(x => x.poster == null);
+} else if (poster !== "all") {
+  data = data.filter(x => x.poster === poster);
+}
     const byDate = (a, b) => a.date.localeCompare(b.date) || a.name.localeCompare(b.name);
 
   // เทียบตัวเลข โดยรายการที่ไม่มีราคาไปอยู่ท้าย
@@ -1088,7 +1096,7 @@ if (poster !== "all") data = data.filter(x => x.poster === poster);
     <div class="card-top">
       <div>
         <div class="title" dir="ltr">👤 <span class="name" dir="auto">${esc(x.name)}</span></div>
-        ${x.poster && POSTER_LABEL[x.poster] ? `<span class="badge ${esc(x.poster)}">${POSTER_LABEL[x.poster]}</span>` : ""}
+        ${x.poster && POSTER_LABEL[x.poster] ? `<span class="badge ${esc(x.poster)}">${POSTER_LABEL[x.poster]}</span>` : ""}        
         <div class="meta">
         ✈️ ${cityTH[x.from]} → ${cityTH[x.to]}<br>
         📅 ${formatDate(x.date)}
