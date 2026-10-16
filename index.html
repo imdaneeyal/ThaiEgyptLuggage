@@ -178,7 +178,7 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
       • ตรวจกฎของสายการบินและกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง<br>
       • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
       📊 เว็บนี้เก็บสถิติการเข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br>
-      📅 ข้อมูลอัปเดตล่าสุด: 15 ต.ค. 2026<br>
+      📅 ข้อมูลอัปเดตล่าสุด: 16 ต.ค. 2026<br>
       📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <a href="mailto:imdaneeyal@gmail.com"><b>imdaneeyal@gmail.com</b></a>
     </div>
 </div>
@@ -196,9 +196,11 @@ const listings = [
    profile:"https://www.facebook.com/profile.php?id=100035804531950",
    contact:"https://m.me/100035804531950/"},
 
-{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-25",
-  name:"Farah Fawziyya",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:"5,xxx",  currency:"THB",
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-25",
+  name:"Farah Fawziyya",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  poster:null,
   deadline:null,  dropoff:"กทม",  pickup:"ดัรรอสะ",
+  note:null,
   profile:"https://www.facebook.com/profile.php?id=61550577374142",
   contact:"https://m.me/61550577374142"},
 
@@ -256,7 +258,7 @@ const listings = [
    contact:"https://m.me/100012228963994"},
 
 {route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-30",
-   name:"عبدالحفيظ بن سليمان", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+   name:"عبدالحفيظ بن سليمان", kg:4, pricePerKg:280, pricePerBag:null, currency:"THB",
    profile:"https://www.facebook.com/profile.php?id=100004357278609",
    contact:"https://m.me/100004357278609"},
 
@@ -310,10 +312,11 @@ const listings = [
    profile:"https://www.facebook.com/profile.php?id=100051454335114",
    contact:"https://m.me/100051454335114"},
 
-{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-30",
-  name:"Muhammad Alee Mudor",  kg:null,  bags:null,  pricePerKg:290,  pricePerBag:null,  currency:"THB",
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-30",
+  name:"Muhammad Alee Mudor",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
   poster:"traveler",
-  deadline:"2026-10-25",  dropoff:null,  pickup:null,
+  deadline:"2026-10-24",  dropoff:"จาเราะบองอ ปัตตานี",  pickup:null,
+  note:null,
   profile:"https://www.facebook.com/profile.php?id=100004796077815",
   contact:"https://m.me/100004796077815"},
 
@@ -354,10 +357,12 @@ const listings = [
    profile:"https://www.facebook.com/profile.php?id=100078852008773",
    contact:"https://m.me/100078852008773"},
 
-{  route:"EG-TH",  from:"Cairo",  to:"Bangkok",  date:"2026-10-27",
+
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-27",
   name:"Ibnu Ismail",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
   poster:null,
   deadline:"2026-10-22",  dropoff:null,  pickup:null,
+  note:"ไม่รับ: ของผิดกฎหมาย/ภาษี",
   profile:"https://www.facebook.com/profile.php?id=100010251493304",
   contact:"https://m.me/100010251493304"},
 
@@ -421,7 +426,7 @@ const listings = [
   contact:"https://m.me/100016486995808" },
 
   { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-25", 
-  name:"Abdulloh Dueramae", kg:null, pricePerKg:280, pricePerBag:null, currency:"THB", 
+  name:"Abdulloh Dueramae", kg:null, pricePerKg:250, pricePerBag:null, currency:"THB", 
   profile:"https://www.facebook.com/profile.php?id=100025319810557", 
   contact:"https://m.me/100025319810557" },
 
@@ -686,9 +691,11 @@ contact: "https://m.me/100006511162358" },
   profile:"https://www.facebook.com/profile.php?id=100050331571017",
   contact:"https://m.me/100050331571017"},
 
-{ route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-10-29",
-  name:"Muhammad Kamal", kg:null, bags:null, pricePerKg:280, pricePerBag:null, currency:"THB",
-  deadline:"2026-10-23", dropoff:"พงสตา ปูยุด", pickup:null,
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-29",
+  name:"Muhammad Kamal",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  poster:"traveler",
+  deadline:"2026-10-24",  dropoff:"พงสตา ปูยุด",  pickup:null,
+  note:null,
   profile:"https://www.facebook.com/profile.php?id=61556406329544",
   contact:"https://m.me/61556406329544"},
 
@@ -706,10 +713,11 @@ contact: "https://m.me/100006511162358" },
   profile:"https://www.facebook.com/profile.php?id=100006703054205",
   contact:"https://m.me/100006703054205"},
 
-{ route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-20",
-  name:"Haleemoh Jaweesa", kg:null, bags:null, pricePerKg:null, pricePerBag:null, currency:"THB",
+  {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-20",
+  name:"Haleemoh Jaweesa",  kg:null,  bags:null,  pricePerKg:290,  pricePerBag:"6,xxx",  currency:"THB",
   poster:null,
-  deadline:null, dropoff:null, pickup:null,
+  deadline:"2026-11-10",  dropoff:null,  pickup:null,
+  note:"ไม่รับ: ของเสียภาษีและผิดกฎหมายทุกชนิด",
   profile:"https://www.facebook.com/profile.php?id=100005994375543",
   contact:"https://m.me/100005994375543"},
 
@@ -964,6 +972,46 @@ contact: "https://m.me/100006511162358" },
   note:"ไม่รับ: ของผิดกฎหมาย, ของเสียภาษี",
   profile:"https://www.facebook.com/profile.php?id=100035923351964",
   contact:"https://m.me/100035923351964"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-05",
+  name:"Sebuah Impian",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100080858566127",
+  contact:"https://m.me/100080858566127"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-08",
+  name:"Asef Cikteh",  kg:null,  bags:null,  pricePerKg:null,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100006227262517",
+  contact:"https://m.me/100006227262517"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-28",
+  name:"Deem Panleng",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100009891107314",
+  contact:"https://m.me/100009891107314"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-04",
+  name:"Khoidir Samae",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100055990712754",
+  contact:"https://m.me/100055990712754"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-25",
+  name:"شريفة أحمد",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100051267038226",
+  contact:"https://m.me/100051267038226"},
 
 ];
 
