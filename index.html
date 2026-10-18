@@ -59,8 +59,6 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
   .badge { background:#eaf6ed; color:#23713c; padding:5px 9px; border-radius:999px; font-size:12px; font-weight:800; white-space:nowrap; }
   .badge.traveler { background:#eaf6ed; color:#23713c; }
   .badge.agent { background:#fff3e0; color:#a35a00; }
-  .badge.traveler { background:#eaf6ed; color:#23713c; }
-  .badge.agent { background:#fff3e0; color:#a35a00; }
   .badge.unknown { background:#eef1f6; color:#657084; }
   .badge { display:inline-block; margin-top:6px; }
   .title { font-size:18px; font-weight:600; text-align:left; }  
@@ -1118,16 +1116,6 @@ const listings = [
 
 ];
 
-(function validate() {
-  const seen = new Map();
-  listings.forEach((x, i) => {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(x.date || "")) console.warn("วันที่ผิด", i, x.name);
-    if (!["TH-EG","EG-TH"].includes(x.route)) console.warn("route ผิด", i, x.name);
-    const key = [x.profile, x.route, x.date].join("|");
-    if (seen.has(key)) console.warn("ซ้ำ", x.name, x.date);
-    seen.set(key, i);
-  });
-})();
 
 let currentRoute = "TH-EG";
 
@@ -1200,6 +1188,25 @@ function parseBagPrice(v) {
   const n = parseInt(v.replace(/,/g, "").replace(/x/gi, "0"), 10);
   return Number.isNaN(n) ? null : n;
 }
+
+const BAG_PRICE_WARN = 1000;
+
+function isLowBagPrice(v) {
+  const n = parseBagPrice(v);
+  return n != null && n < BAG_PRICE_WARN;
+}
+
+(function validate() {
+  const seen = new Map();
+  listings.forEach((x, i) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(x.date || "")) console.warn("วันที่ผิด", i, x.name);
+    if (!["TH-EG","EG-TH"].includes(x.route)) console.warn("route ผิด", i, x.name);
+    if (isLowBagPrice(x.pricePerBag)) console.warn("ราคาต่อใบต่ำผิดปกติ", x.name, x.pricePerBag);
+    const key = [x.profile, x.route, x.date].join("|");
+    if (seen.has(key)) console.warn("ซ้ำ", x.name, x.date);
+    seen.set(key, i);
+  });
+})();
 
 function searchListings() {
   const from = document.getElementById("from").value;
