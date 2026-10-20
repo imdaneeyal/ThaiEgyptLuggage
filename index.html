@@ -1377,8 +1377,7 @@ if (poster === "unknown") {
       ${x.pricePerKg == null && x.pricePerBag == null ? `<span class="stock">💬 สอบถามราคากับผู้เดินทาง</span>` : ""}
       ${x.pricePerKg != null ? `⚖️ ${x.pricePerKg.toLocaleString()} ${x.currency} / kg<br>` : ""}
       ${x.pricePerBag != null ? `💰 ${typeof x.pricePerBag === "number" ? x.pricePerBag.toLocaleString() : x.pricePerBag} ${x.currency} / ใบ` : ""}    </div>
-    <a class="contact" href="${x.contact}" target="_blank" rel="noopener noreferrer">ติดต่อผู้เดินทาง</a>
-  </article>
+<a class="contact" href="${x.profile}" target="_blank" rel="noopener noreferrer">ดูโปรไฟล์ผู้เดินทาง</a>  </article>
 `).join("");
 }
 
