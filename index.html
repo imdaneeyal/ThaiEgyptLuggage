@@ -74,6 +74,9 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
   }
   .contact { margin-top:14px; width:100%; background:#172033; color:white; }
   a.contact { display:block; text-align:center; text-decoration:none;
+  .contact-row { display:flex; gap:10px; margin-top:14px; }
+  .contact-row .contact { margin-top:0; flex:1; width:auto; }
+a.contact.alt { background:#eef1f6; color:#172033; }
   padding:12px 18px; border-radius:10px; font-weight:700; }
   .empty { text-align:center; padding:35px 15px; color:#687286; background:white; border-radius:16px; }
   .notice {
@@ -175,8 +178,7 @@ h1 { margin: 0 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.01em
       • เว็บนี้เป็นเพียงที่รวบรวมข้อมูล ไม่ได้เป็นคู่สัญญา และไม่รับประกันผู้เดินทางหรือราคา<br>
       • ตรวจสิ่งของทุกชิ้นด้วยตนเองก่อนฝาก ห้ามฝากของที่ไม่ทราบว่าคืออะไร ผู้เดินทางต้องรับผิดชอบตามกฎหมายที่สนามบิน<br>
       • ตรวจกฎของสายการบินและกฎศุลกากรของประเทศต้นทาง/ปลายทางด้วยตนเอง<br>
-      • กดปุ่มแล้วระบบจะคัดลอกข้อความให้ เมื่อเข้าโปรไฟล์ให้กด "ส่งข้อความ" แล้ววางข้อความในช่องแชท<br>
-      • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
+      • กด "แชท" หรือ "โปรไฟล์" ระบบจะคัดลอกข้อความสอบถามให้อัตโนมัติ      • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
       📊 เว็บนี้เก็บสถิติการเข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br>
       🗓️ ข้อมูลอัปเดตล่าสุด: 20 ต.ค. 2569<br>
       📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <a href="mailto:imdaneeyal@gmail.com"><b>imdaneeyal@gmail.com</b></a>
@@ -1378,23 +1380,29 @@ if (poster === "unknown") {
       ${x.pricePerKg == null && x.pricePerBag == null ? `<span class="stock">💬 สอบถามราคากับผู้เดินทาง</span>` : ""}
       ${x.pricePerKg != null ? `⚖️ ${x.pricePerKg.toLocaleString()} ${x.currency} / kg<br>` : ""}
       ${x.pricePerBag != null ? `💰 ${typeof x.pricePerBag === "number" ? x.pricePerBag.toLocaleString() : x.pricePerBag} ${x.currency} / ใบ` : ""}    </div>
-<a class="contact" href="${x.profile}" target="_blank" rel="noopener noreferrer"
-   onclick="copyMsg(this)"
-   data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">
-   คัดลอกข้อความ + ไปโปรไฟล์
-</a>
+<div class="contact-row">
+  <a class="contact" href="${x.contact}" target="_blank" rel="noopener noreferrer"
+     onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">แชท</a>
+  <a class="contact alt" href="${x.profile}" target="_blank" rel="noopener noreferrer"
+     onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">โปรไฟล์</a>
+</div>
 </article>
 `).join("");
 }
 
 function copyMsg(el) {
   const d = el.dataset;
-  const msg = `สวัสดีครับ/ค่ะ สนใจฝากน้ำหนักเที่ยวบิน ${cityTH[d.from]}-${cityTH[d.to]} วันที่ ${formatDate(d.date)} ยังมีไหมครับ/คะ`;  if (navigator.clipboard) {
-    navigator.clipboard.writeText(msg).catch(() => {});
-  } else {
+  const msg = `สวัสดีครับ/ค่ะ สนใจฝากน้ำหนักเที่ยวบิน ${cityTH[d.from]}-${cityTH[d.to]} วันที่ ${formatDate(d.date)} ยังมีที่ว่างไหมครับ/คะ`;
+  const fallback = () => {
     const t = document.createElement("textarea");
     t.value = msg; document.body.appendChild(t); t.select();
-    document.execCommand("copy"); t.remove();
+    try { document.execCommand("copy"); } catch (e) {}
+    t.remove();
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(msg).catch(fallback);
+  } else {
+    fallback();
   }
 }
 
