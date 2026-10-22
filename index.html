@@ -84,11 +84,32 @@ a.contact.alt { background:#eef1f6; color:#172033; }
     margin-top:20px; font-size:12px; line-height:1.6; color:#687286;
     background:#fff8e8; border:1px solid #f1dfaa; padding:13px; border-radius:12px;
   }
-  @media(max-width:700px){
+  .quick { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+    .chip { padding:6px 12px; font-size:13px; border-radius:999px;
+        background:#eef1f6; color:#38445a; }
+    .chip:hover { background:#e1e6ef; }
+    .date-range { display:flex; gap:8px; align-items:center; }
+    .dbox { position:relative; flex:1; min-width:0; margin:0; }
+    .dtext {
+      display:block; padding:10px 8px; border:1px solid #d8deea; border-radius:10px;
+      font-size:15px; background:white; color:#172033; text-align:center;
+    }
+    .dtext.placeholder { color:#8a93a5; }
+    .dbox input {
+      position:absolute; inset:0; width:100%; height:100%;
+      opacity:0; cursor:pointer; padding:0; border:0;
+      z-index:2;
+    }
+    .dbox input::-webkit-calendar-picker-indicator {
+      position:absolute; inset:0; width:100%; height:100%;
+      padding:0; margin:0; cursor:pointer;
+    }
+    @media(max-width:700px){
     .fields { grid-template-columns:1fr; }
     .routes { grid-template-columns:1fr; }
     h1 { font-size:25px; }
   }
+
 </style>
 </head>
 <body>
@@ -105,43 +126,35 @@ a.contact.alt { background:#eef1f6; color:#172033; }
       <button class="route" data-route="EG-TH">อียิปต์ → ไทย</button>
     </div>
 
-    <div class="fields">
-      <div>
-        <label for="from">ออกจาก</label>
-        <select id="from"></select>
-      </div>
-      <div>
-        <label for="to">ไปยัง</label>
-        <select id="to"></select>
-      </div>
-      <div>
-        <label for="date">ช่วงเวลาเดินทาง</label>
-        <select id="date">
-          <option value="">ทุกช่วงเวลา</option>
-          <optgroup label="ตุลาคม 2569">
-            <option value="2026-10-01..2026-10-31">ทั้งเดือน</option>
-            <option value="2026-10-01..2026-10-07">สัปดาห์ที่ 1 (1-7)</option>
-            <option value="2026-10-08..2026-10-14">สัปดาห์ที่ 2 (8-14)</option>
-            <option value="2026-10-15..2026-10-21">สัปดาห์ที่ 3 (15-21)</option>
-            <option value="2026-10-22..2026-10-31">สัปดาห์ที่ 4 (22-31)</option>
-          </optgroup>
-          <optgroup label="พฤศจิกายน 2569">
-            <option value="2026-11-01..2026-11-30">ทั้งเดือน</option>
-            <option value="2026-11-01..2026-11-07">สัปดาห์ที่ 1 (1-7)</option>
-            <option value="2026-11-08..2026-11-14">สัปดาห์ที่ 2 (8-14)</option>
-            <option value="2026-11-15..2026-11-21">สัปดาห์ที่ 3 (15-21)</option>
-            <option value="2026-11-22..2026-11-30">สัปดาห์ที่ 4 (22-30)</option>
-          </optgroup>
-          <optgroup label="ธันวาคม 2569">
-            <option value="2026-12-01..2026-12-31">ทั้งเดือน</option>
-            <option value="2026-12-01..2026-12-07">สัปดาห์ที่ 1 (1-7)</option>
-            <option value="2026-12-08..2026-12-14">สัปดาห์ที่ 2 (8-14)</option>
-            <option value="2026-12-15..2026-12-21">สัปดาห์ที่ 3 (15-21)</option>
-            <option value="2026-12-22..2026-12-31">สัปดาห์ที่ 4 (22-31)</option>
-          </optgroup>
-        </select>
-      </div>
-    </div>
+        <div class="fields">
+          <div>
+            <label for="from">ออกจาก</label>
+            <select id="from"></select>
+          </div>
+          <div>
+            <label for="to">ไปยัง</label>
+            <select id="to"></select>
+          </div>
+          <div>
+            <label>ช่วงเวลาเดินทาง</label>
+            <div class="date-range">
+              <div class="dbox">
+                <span id="dateFromText" class="dtext placeholder">วว/ดด/ปปปป</span>
+                <input type="date" id="dateFrom" aria-label="ตั้งแต่วันที่">
+              </div>
+              <span>–</span>
+              <div class="dbox">
+                <span id="dateToText" class="dtext placeholder">วว/ดด/ปปปป</span>
+                <input type="date" id="dateTo" aria-label="ถึงวันที่">
+              </div>
+            </div>
+            <div class="quick">
+              <button type="button" class="chip" data-q="week">สัปดาห์นี้</button>
+              <button type="button" class="chip" data-q="month">เดือนนี้</button>
+              <button type="button" class="chip" data-q="next">เดือนหน้า</button>
+            </div>
+          </div>
+        </div>
 
     <div class="fields" style="margin-top:12px">
       
@@ -182,7 +195,7 @@ a.contact.alt { background:#eef1f6; color:#172033; }
       • กด "แชท" หรือ "โปรไฟล์" ระบบจะคัดลอกข้อความสอบถามให้อัตโนมัติ<br>      
       • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
       📊 เว็บนี้เก็บสถิติการเข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br>
-      🗓️ ข้อมูลอัปเดตล่าสุด: 21 ต.ค. 2569<br>
+      🗓️ ข้อมูลอัปเดตล่าสุด: 22 ต.ค. 2569<br>
       📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <a href="mailto:imdaneeyal@gmail.com"><b>imdaneeyal@gmail.com</b></a>
     </div>
 </div>
@@ -517,9 +530,9 @@ const listings = [
   contact:"https://m.me/100037867190761"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-10",
-  name:"Wanhazeereen Wanhasan",  kg:null,  bags:null,  pricePerKg:240,  pricePerBag:null,  currency:"THB",
+  name:"Wanhazeereen Wanhasan",  kg:null,  bags:null,  pricePerKg:230,  pricePerBag:null,  currency:"THB",
   poster:null,
-  deadline:null,  dropoff:null,  pickup:null,
+  deadline:null,  dropoff:null,  pickup:"บูอุส",
   note:"ยกใบราคาพิเศษ",
   profile:"https://www.facebook.com/profile.php?id=61586436287861",
   contact:"https://m.me/61586436287861"},
@@ -621,9 +634,9 @@ const listings = [
   contact:"https://m.me/100091742041260"},
 
   {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-29",
-  name:"Arrifin Laehha",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  name:"Arrifin Laehha",  kg:null,  bags:null,  pricePerKg:230,  pricePerBag:5000,  currency:"THB",
   poster:null,
-  deadline:"2026-10-24",  dropoff:null,  pickup:null,
+  deadline:"2026-10-28",  dropoff:"กรุงเทพฯ",  pickup:null,
   note:null,
   profile:"https://www.facebook.com/profile.php?id=100027890254706",
   contact:"https://m.me/100027890254706"},
@@ -694,9 +707,9 @@ const listings = [
   contact:"https://m.me/100050331571017"},
 
   {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-10-29",
-  name:"Muhammad Kamal",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  name:"Muhammad Kamal",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:"5,xxx",  currency:"THB",
   poster:"traveler",
-  deadline:"2026-10-24",  dropoff:"พงสตา ปูยุด",  pickup:null,
+  deadline:"2026-10-26",  dropoff:"พงสตา ปูยุด",  pickup:null,
   note:null,
   profile:"https://www.facebook.com/profile.php?id=61556406329544",
   contact:"https://m.me/61556406329544"},
@@ -842,7 +855,7 @@ const listings = [
   {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-04",
   name:"Nur Fatmee",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
   poster:null,
-  deadline:null,  dropoff:null,  pickup:null,
+  deadline:null,  dropoff:"กรุงเทพฯ",  pickup:null,
   note:"3 โลราคาพิเศษ, ยกใบคุยราคากันได้",
   profile:"https://www.facebook.com/profile.php?id=100044961840281",
   contact:"https://m.me/100044961840281"},
@@ -1022,7 +1035,7 @@ const listings = [
   contact:"https://m.me/100011099146723"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-04",
-  name:"Pelangi Pagi",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
+  name:"Pelangi Pagi",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:5000,  currency:"THB",
   poster:null,
   deadline:null,  dropoff:null,  pickup:null,
   note:null,
@@ -1062,7 +1075,7 @@ const listings = [
   contact:"https://m.me/100016975562741"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-03",
-  name:"Nurlee Ta-adam",  kg:null,  bags:null,  pricePerKg:260,  pricePerBag:5500,  currency:"THB",
+  name:"Nurlee Ta-adam",  kg:null,  bags:null,  pricePerKg:260,  pricePerBag:5000,  currency:"THB",
   poster:null,
   deadline:null,  dropoff:"กรุงเทพฯ",  pickup:null,
   note:null,
@@ -1142,7 +1155,7 @@ const listings = [
   contact:"https://m.me/100009718952547"},
 
 { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-07",
-  name:"Abdulhadee Binmai", kg:null, bags:null, pricePerKg:280, pricePerBag:null, currency:"THB",
+  name:"Abdulhadee Binmai", kg:null, bags:null, pricePerKg:260, pricePerBag:null, currency:"THB",
   poster:"traveler",
   deadline:null, dropoff:null, pickup:null,
   note:null,
@@ -1293,6 +1306,30 @@ const listings = [
   profile:"https://www.facebook.com/profile.php?id=100002151575957",
   contact:"https://m.me/100002151575957"},
 
+{  route:"EG-TH",  from:"Cairo",  to:"Bangkok",  date:"2026-11-11",
+  name:"Fitreeya Weaming",  kg:30,  bags:null,  pricePerKg:130,  pricePerBag:null,  currency:"THB",
+  poster:"traveler",
+  deadline:null,  dropoff:null,  pickup:null,
+  note:"ฮับบะ รับ 10กระปุก",
+  profile:"https://www.facebook.com/profile.php?id=100003481089232",
+  contact:"https://m.me/100003481089232"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-05",
+  name:"Bintang Surga",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:"ยกใบให้ราคาพิเศษ",
+  profile:"https://www.facebook.com/profile.php?id=100085361042695",
+  contact:"https://m.me/100085361042695"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-16",
+  name:"นูรีซัน หัดขะเร็ม",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:"ยกใบราคาพิเศษ",
+  profile:"https://www.facebook.com/profile.php?id=100028111323343",
+  contact:"https://m.me/100028111323343"},
+
 ];
 
 
@@ -1337,17 +1374,37 @@ function getTodayStr(route) {
   }).format(new Date());
 }
 
-function disablePastRanges() {
-  const today = getTodayStr("TH-EG");
-  const sel = document.getElementById("date");
-  Array.from(sel.options).forEach(opt => {
-    if (!opt.value) return;                 // "ทุกช่วงเวลา" ไม่ต้องปิด
-    const end = opt.value.split("..")[1];
-    opt.disabled = end <= today;   // ช่วงที่จบวันนี้หรือก่อนหน้า = เลือกไม่ได้
-  });
-  // ถ้าตัวเลือกที่เลือกอยู่กลายเป็น disabled ให้กลับเป็นทุกช่วงเวลา
-  if (sel.selectedOptions[0]?.disabled) sel.value = "";
+function limitDateInputs() {
+  const min = getTodayStr("TH-EG");
+  ["dateFrom","dateTo"].forEach(id => document.getElementById(id).min = min);
 }
+
+function ymd(d) {
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+}
+
+function setQuick(q) {
+  const now = new Date(getTodayStr("TH-EG") + "T00:00:00");
+  let s, e;
+  if (q === "week") {
+    s = new Date(now); s.setDate(now.getDate() + 1);
+    e = new Date(now); e.setDate(now.getDate() + 7);
+  } else if (q === "month") {
+    s = new Date(now); s.setDate(now.getDate() + 1);
+    e = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  } else {
+    s = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    e = new Date(now.getFullYear(), now.getMonth() + 2, 0);
+  }
+  document.getElementById("dateFrom").value = ymd(s);
+  document.getElementById("dateTo").value   = ymd(e);
+  syncDateText();
+  searchListings();
+}
+
+document.querySelectorAll(".chip").forEach(b =>
+  b.addEventListener("click", () => setQuick(b.dataset.q)));
 
 const DEV_MODE = new URLSearchParams(location.search).has("dev");
 
@@ -1390,7 +1447,6 @@ function isLowBagPrice(v) {
 function searchListings() {
   const from = document.getElementById("from").value;
   const to = document.getElementById("to").value;
-  const date = document.getElementById("date").value;
   const sort = document.getElementById("sort").value;
   const poster = document.getElementById("poster").value;
 
@@ -1403,9 +1459,13 @@ const today = getTodayStr(currentRoute);
   x.date > today &&
   (x.deadline == null || x.deadline >= today)
 );
-if (date) {
-  const [start, end] = date.split("..");
-  data = data.filter(x => x.date >= start && x.date <= end);
+const dFrom = document.getElementById("dateFrom").value;
+const dTo   = document.getElementById("dateTo").value;
+if (dFrom || dTo) {
+  const a = dFrom || dTo;   // ใส่ช่องเดียว = วันเดียว
+  const b = dTo || dFrom;
+  const [s, e] = a <= b ? [a, b] : [b, a];
+  data = data.filter(x => x.date >= s && x.date <= e);
 }
 if (poster === "unknown") {
   data = data.filter(x => x.poster == null);
@@ -1488,13 +1548,42 @@ function copyMsg(el) {
 }
 
 function resetSearch() {
-  document.getElementById("date").value = "";
+  document.getElementById("dateFrom").value = "";
+  document.getElementById("dateTo").value = "";
+  syncDateText();
   document.getElementById("sort").value = "date";
   document.getElementById("poster").value = "all";
   setupRoute(currentRoute);
 }
 
-disablePastRanges();
+function fmtDMY(v) {
+  if (!v) return "วว/ดด/ปปปป";
+  const [y, m, d] = v.split("-");
+  return `${d}/${m}/${y}`;
+}
+
+function syncDateText() {
+  [["dateFrom","dateFromText"],["dateTo","dateToText"]].forEach(([i, t]) => {
+    const v = document.getElementById(i).value;
+    const el = document.getElementById(t);
+    el.textContent = fmtDMY(v);
+    el.classList.toggle("placeholder", !v);
+  });
+}
+
+["dateFrom","dateTo"].forEach(id =>
+  document.getElementById(id).addEventListener("change", () => {
+    syncDateText();
+    searchListings();
+  }));
+["dateFrom","dateTo"].forEach(id => {
+  const inp = document.getElementById(id);
+  inp.addEventListener("click", () => {
+    try { inp.showPicker(); } catch (e) {}
+  });
+});
+limitDateInputs();
+syncDateText();
 setupRoute("TH-EG");
 </script>
 
