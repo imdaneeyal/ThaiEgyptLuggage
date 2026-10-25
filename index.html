@@ -186,7 +186,7 @@ a.contact.alt { background:#eef1f6; color:#172033; }
       • กด "แชท" หรือ "โปรไฟล์" ระบบจะคัดลอกข้อความสอบถามให้อัตโนมัติ<br>      
       • ตกลงราคาและเงื่อนไขกับผู้เดินทางโดยตรง ระวังมิจฉาชีพ ไม่ควรโอนเงินล่วงหน้าทั้งหมด<br><br>
       📊 เว็บนี้เก็บสถิติการเข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br>
-      🗓️ ข้อมูลอัปเดตล่าสุด: 24 ต.ค. 2569<br>
+      🗓️ ข้อมูลอัปเดตล่าสุด: 25 ต.ค. 2569<br>
       📩 แจ้งลบ/แก้ไขข้อมูลหรือรายงานปัญหา: <a href="mailto:imdaneeyal@gmail.com"><b>imdaneeyal@gmail.com</b></a>
     </div>
 </div>
@@ -295,10 +295,10 @@ const listings = [
    contact:"https://m.me/100024143617051"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-11",
-  name:"Arwa Aslamiah",  kg:6,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  name:"Arwa Aslamiah",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
   poster:null,
   deadline:null,  dropoff:null,  pickup:"อาชีรบาวาบัต3",
-  note:"เหมาหมดราคาพิเศษค่าา",
+  note:null,
   profile:"https://www.facebook.com/profile.php?id=100085167487203",
   contact:"https://m.me/100085167487203"},
 
@@ -517,7 +517,7 @@ const listings = [
   contact:"https://m.me/100042508921420"},
 
 { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-05",
-  name:"Cinta Abadi", kg:null, bags:null, pricePerKg:240, pricePerBag:null, currency:"THB",
+  name:"Cinta Abadi", kg:null, bags:null, pricePerKg:230, pricePerBag:null, currency:"THB",
   poster:"traveler",
   deadline:null, dropoff:null, pickup:null,
   note:null,
@@ -577,7 +577,7 @@ const listings = [
   contact:"https://m.me/100026534571010"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-08",
-  name:"Motivasi Ku",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  name:"Motivasi Ku",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
   deadline:null,  dropoff:null,
   profile:"https://www.facebook.com/profile.php?id=100015387191899",
   contact:"https://m.me/100015387191899"},
@@ -603,8 +603,8 @@ const listings = [
   contact:"https://m.me/100060728724362"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-04",
-  name:"Nada Diana",  kg:15,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
-  deadline:null,  dropoff:null,  pickup:null,
+  name:"Nada Diana",  kg:15,  bags:null,  pricePerKg:280,  pricePerBag:5000 ,  currency:"THB",
+  deadline:null,  dropoff:"นนทบุรี",  pickup:null,
   note:"5 กก ขึ้นไปราคาพิเศษ",
   profile:"https://www.facebook.com/profile.php?id=100008203595793",
   contact:"https://m.me/100008203595793"},
@@ -622,7 +622,7 @@ const listings = [
   contact:"https://m.me/100030283969057"},
 
 {  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-08",
-  name:"Mu Az",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  name:"Mu Az",  kg:null,  bags:null,  pricePerKg:250,  pricePerBag:null,  currency:"THB",
   deadline:null,  dropoff:null,  pickup:null,
   profile:"https://www.facebook.com/profile.php?id=100029109363671",
   contact:"https://m.me/100029109363671"},
@@ -1073,7 +1073,7 @@ const listings = [
 { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-07",
   name:"Abdulhadee Binmai", kg:null, bags:null, pricePerKg:260, pricePerBag:null, currency:"THB",
   poster:"traveler",
-  deadline:null, dropoff:null, pickup:null,
+  deadline:null, dropoff:"สงขลา", pickup:null,
   note:null,
   profile:"https://www.facebook.com/profile.php?id=100022554396240",
   contact:"https://m.me/100022554396240"},
@@ -1242,7 +1242,7 @@ const listings = [
   name:"นูรีซัน หัดขะเร็ม",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:6000,  currency:"THB",
   poster:null,
   deadline:null,  dropoff:null,  pickup:null,
-  note:null,
+  note:"ยกใบราคาพิเศษ",
   profile:"https://www.facebook.com/profile.php?id=100028111323343",
   contact:"https://m.me/100028111323343"},
 
@@ -1294,11 +1294,11 @@ const listings = [
   profile:"https://www.facebook.com/profile.php?id=100012277096596",
   contact:"https://m.me/100012277096596"},
 
-{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-10",
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-11",
   name:"นูรีซัน หัดขะเร็ม",  kg:20,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
   poster:null,
   deadline:null,  dropoff:null,  pickup:null,
-  note:null,
+  note:"ยกใบราคาพิเศษ",
   profile:"https://www.facebook.com/profile.php?id=100028111323343",
   contact:"https://m.me/100028111323343"},
 
@@ -1357,6 +1357,38 @@ const listings = [
   note:null,
   profile:"https://www.facebook.com/profile.php?id=100060850016912",
   contact:"https://m.me/100060850016912"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-05",
+  name:"Muhammad Iman Arwae",  kg:null,  bags:null,  pricePerKg:280,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:"ยกใบให้ราคาพิเศษ",
+  profile:"https://www.facebook.com/profile.php?id=61594057600726",
+  contact:"https://m.me/61594057600726"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-08",
+  name:"Teman Temae",  kg:null,  bags:null,  pricePerKg:null,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:"2026-11-08",  dropoff:"นนทบุรี",  pickup:null,
+  note:"รับทั้งแยกและยกใบ",
+  profile:"https://www.facebook.com/profile.php?id=100093065992720",
+  contact:"https://m.me/100093065992720"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-16",
+  name:"Suhaila Dhm",  kg:null,  bags:null,  pricePerKg:270,  pricePerBag:null,  currency:"THB",
+  poster:"traveler",
+  deadline:null,  dropoff:null,  pickup:null,
+  note:null,
+  profile:"https://www.facebook.com/profile.php?id=100029833262569",
+  contact:"https://m.me/100029833262569"},
+
+{  route:"TH-EG",  from:"Bangkok",  to:"Cairo",  date:"2026-11-26",
+  name:"Tusu Tawa",  kg:null,  bags:null,  pricePerKg:300,  pricePerBag:null,  currency:"THB",
+  poster:null,
+  deadline:null,  dropoff:null,  pickup:null,
+  note:"ยกใบราคาพิเศษ",
+  profile:"https://www.facebook.com/profile.php?id=61583030075967",
+  contact:"https://m.me/61583030075967"},
 
 ];
 
