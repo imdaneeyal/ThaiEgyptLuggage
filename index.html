@@ -646,11 +646,12 @@ const listings = [
   profile:"https://www.facebook.com/profile.php?id=100051780940661",
   contact:"https://m.me/100051780940661"},
  
-{ route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-11-17",
+  { route:"EG-TH", from:"Cairo", to:"Bangkok", date:"2026-11-17",
   name:"นูรีซัน หัดขะเร็ม", kg:null, bags:null, pricePerKg:160, pricePerBag:3200, currency:"THB",
   poster:null,
   deadline:"2026-11-14", dropoff:"บาบุช (บาบาอับดู)", pickup:null,
   note:"❌น้ำหอมเต็มแล้วนะคะ❌",
+  post:"https://www.facebook.com/groups/1327502453935665/posts/29782496088009588/",
   profile:"https://www.facebook.com/profile.php?id=100028111323343",
   contact:"https://m.me/100028111323343"},
  
@@ -963,8 +964,10 @@ ${x.pricePerBag != null ? `💰 ${showPrice(x.pricePerBag)} ${x.currency} / ใ�
 <div class="contact-row">
   <a class="contact" href="${x.contact}" target="_blank" rel="noopener noreferrer"
      onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">แชท</a>
-  <a class="contact alt" href="${x.profile}" target="_blank" rel="noopener noreferrer"
-     onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">โปรไฟล์</a>
+  ${x.post
+    ? `<a class="contact alt" href="${esc(x.post)}" target="_blank" rel="noopener noreferrer">ดูโพสต์</a>`
+    : `<a class="contact alt" href="${x.profile}" target="_blank" rel="noopener noreferrer"
+         onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">โปรไฟล์</a>`}
 </div>
 </article>
 `).join("");
