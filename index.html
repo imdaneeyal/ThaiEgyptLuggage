@@ -147,6 +147,11 @@ a.contact.alt { background:#eef1f6; color:#172033; }
           </div>
         </div>
 
+<div style="margin-top:12px">
+  <label for="q">ค้นหาชื่อผู้เดินทาง</label>
+  <input type="search" id="q" placeholder="พิมพ์ชื่อผู้เดินทาง" autocomplete="off">
+</div>
+
     <div class="fields" style="margin-top:12px">
       
       <div>
@@ -911,7 +916,13 @@ if (poster === "unknown") {
 } else if (poster !== "all") {
   data = data.filter(x => x.poster === poster);
 }
+    const q = document.getElementById("q").value.trim().toLowerCase();
+if (q) {
+  data = data.filter(x => x.name.toLowerCase().includes(q));
+}
+
     const byDate = (a, b) => a.date.localeCompare(b.date) || a.name.localeCompare(b.name);
+
 
   // เทียบตัวเลข โดยรายการที่ไม่มีราคาไปอยู่ท้าย
   const cmpNum = (x, y) => {
@@ -995,6 +1006,7 @@ function resetSearch() {
   syncDateText();
   document.getElementById("sort").value = "date";
   document.getElementById("poster").value = "all";
+  document.getElementById("q").value = "";
   setupRoute(currentRoute);
 }
 
@@ -1024,6 +1036,8 @@ function syncDateText() {
     try { inp.showPicker(); } catch (e) {}
   });
 });
+
+document.getElementById("q").addEventListener("input", searchListings);
 limitDateInputs();
 syncDateText();
 setupRoute("TH-EG");
