@@ -663,7 +663,7 @@ const listings = [
   contact:"https://m.me/100022657813585"},
  
 { route:"TH-EG", from:"Bangkok", to:"Cairo", date:"2026-11-11",
-  name:"Laut Agama", kg:null, bags:null, pricePerKg:null, pricePerBag:250, currency:"THB",
+  name:"Laut Agama", kg:null, bags:null, pricePerKg:250, pricePerBag:null, currency:"THB",
   poster:null,
   deadline:null, dropoff:null, pickup:null,
   note:null,
@@ -848,18 +848,23 @@ const POSTER_LABEL = {
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-function parseBagPrice(v) {
+function parsePrice(v) {
   if (typeof v === "number") return v;
   if (typeof v !== "string") return null;
-  // "6,xxx" -> 6000 (ประมาณการต่ำสุด), "5,600" -> 5600
   const n = parseInt(v.replace(/,/g, "").replace(/x/gi, "0"), 10);
   return Number.isNaN(n) ? null : n;
+}
+
+function showPrice(v) {
+  if (v == null) return null;
+  if (typeof v === "number") return v.toLocaleString();
+  return /x/i.test(v) ? `ประมาณ ${v}` : (parsePrice(v) ?? v).toLocaleString();
 }
 
 const BAG_PRICE_WARN = 1000;
 
 function isLowBagPrice(v) {
-  const n = parseBagPrice(v);
+  const n = parsePrice(v);
   return n != null && n < BAG_PRICE_WARN;
 }
 
@@ -869,6 +874,8 @@ function isLowBagPrice(v) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(x.date || "")) console.warn("วันที่ผิด", i, x.name);
     if (!["TH-EG","EG-TH"].includes(x.route)) console.warn("route ผิด", i, x.name);
     if (isLowBagPrice(x.pricePerBag)) console.warn("ราคาต่อใบต่ำผิดปกติ", x.name, x.pricePerBag);
+    const kg = parsePrice(x.pricePerKg);
+if (kg != null && (kg < 100 || kg > 500)) console.warn("ราคาต่อกิโลผิดปกติ", x.name, x.pricePerKg);
     const key = [x.profile, x.route, x.date].join("|");
     if (seen.has(key)) console.warn("ซ้ำ", x.name, x.date);
     seen.set(key, i);
@@ -916,10 +923,10 @@ if (poster === "unknown") {
   if (sort === "date") {
     data.sort(byDate);
   } else if (sort === "priceKg") {
-    data.sort((a, b) => cmpNum(a.pricePerKg, b.pricePerKg) || byDate(a, b));
+  data.sort((a, b) => cmpNum(parsePrice(a.pricePerKg), parsePrice(b.pricePerKg)) || byDate(a, b));
   } else if (sort === "priceBag") {
     data.sort((a, b) =>
-      cmpNum(parseBagPrice(a.pricePerBag), parseBagPrice(b.pricePerBag)) || byDate(a, b));
+    cmpNum(parsePrice(a.pricePerBag), parsePrice(b.pricePerBag)) || byDate(a, b));
   }
 
   document.getElementById("summary").textContent =
@@ -950,8 +957,9 @@ if (poster === "unknown") {
       ${x.kg != null ? `<span class="stock">📦 เหลือ ${x.kg} kg</span><br>` : ""}
       ${x.bags != null ? `<span class="stock">🧳 เหลือ ${x.bags} ใบ</span><br>` : ""}
       ${x.pricePerKg == null && x.pricePerBag == null ? `<span class="stock">💬 สอบถามราคากับผู้เดินทาง</span>` : ""}
-      ${x.pricePerKg != null ? `⚖️ ${x.pricePerKg.toLocaleString()} ${x.currency} / kg<br>` : ""}
-      ${x.pricePerBag != null ? `💰 ${typeof x.pricePerBag === "number" ? x.pricePerBag.toLocaleString() : x.pricePerBag} ${x.currency} / ใบ` : ""}    </div>
+      ${x.pricePerKg != null ? `⚖️ ${showPrice(x.pricePerKg)} ${x.currency} / kg<br>` : ""}
+${x.pricePerBag != null ? `💰 ${showPrice(x.pricePerBag)} ${x.currency} / ใบ` : ""}    
+      </div>
 <div class="contact-row">
   <a class="contact" href="${x.contact}" target="_blank" rel="noopener noreferrer"
      onclick="copyMsg(this)" data-from="${x.from}" data-to="${x.to}" data-date="${x.date}">แชท</a>
